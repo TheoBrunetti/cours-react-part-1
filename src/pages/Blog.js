@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import Logo from "../components/Logo";
 import Navigation from "../components/Navigation";
+import axios from "axios";
 import Article from "../components/Article";
 
 const Blog = () => {
@@ -9,9 +9,10 @@ const Blog = () => {
     const [author, setAuthor] = useState("");
     const [content, setContent] = useState("");
     const [error, setError] = useState(false);
+
     const getData = () => {
         axios
-            .get("http://localhost:3004/articles")
+            .get("http://localhost:3003/articles")
             .then((res) => setBlogData(res.data));
     };
 
@@ -23,7 +24,7 @@ const Blog = () => {
         if (content.length < 140) {
             setError(true);
         } else {
-            axios.post("http://localhost:3004/articles", {
+            axios.post("http://localhost:3003/articles", {
                 author: author,
                 content: content,
                 date: Date.now(),
@@ -40,6 +41,7 @@ const Blog = () => {
             <Logo />
             <Navigation />
             <h1>Blog</h1>
+
             <form onSubmit={(e) => handleSubmit(e)}>
                 <input
                     type="text"
